@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const NewTaskForm = ({onHandleSubmit}) => {
   const [title, setTitle] = useState('');
 
-  const handleTaskChange = (event) => {
+  const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
 
@@ -21,12 +21,16 @@ const NewTaskForm = ({onHandleSubmit}) => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Task Title:</label>
-      <input type="text" id="title" name="title" value={title} onChange={handleTaskChange}/>
+      <input type="text" id="title" title="title" value={title} onChange={handleTitleChange}/>
       <div>
         <input type="submit" value="Add a task" />
       </div>
     </form>
   );
+};
+
+NewTaskForm.propTypes = {
+  onHandleSubmit: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;

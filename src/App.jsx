@@ -22,6 +22,11 @@ const convertFromAPI = (apiTask) => {
   return newTask;
 };
 
+const addTaskAPI = (newTask) => {
+  return axios.post(`${kbaseURL}/tasks`, newTask)
+    .catch(error => console.log(error));
+};
+
 const toggleTaskCompleteAPI = (id, isComplete) => {
   const endpoint = isComplete ? 'mark_incomplete' : 'mark_complete';
   return axios.patch(`${kbaseURL}/tasks/${id}/${endpoint}`)
@@ -69,12 +74,21 @@ const App = () => {
       });
   };
 
+  const onHandleSubmit = (data) => {
+    return addTaskAPI(data)
+      .then((result) => {
+        return setTasks((prevTasks) => [convertFromAPI(result.data), ...prevTasks]);
+      });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
+        <NewTaskForm
+          onHandleSubmit={onHandleSubmit}/>
         <TaskList
           tasks={tasks}
           toggleTaskComplete={toggleTaskComplete}
