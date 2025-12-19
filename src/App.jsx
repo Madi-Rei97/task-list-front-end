@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TaskList from './components/TaskList.jsx';
 import './App.css';
+import NewTaskForm from './components/NewTaskForm.jsx';
 
 const TASKS = [
   {
