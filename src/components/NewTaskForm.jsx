@@ -43,10 +43,8 @@ const NewTaskForm = ({onHandleSubmit}) => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Task Title:</label>
       { makeControlledInput('title') }
-      <input type="text" id="title" value={formData.title} onChange={handleChange}/>
       <label htmlFor="description">Description:</label>
       { makeControlledInput('description') }
-      <input type="text" id="description" value={formData.description} onChange={handleChange}/>
       <div>
         <input type="submit" value="Add a task" />
       </div>
